@@ -22,7 +22,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          Hello World
+          Hello World! This is a simple Vite + React application.
         </p>
       </div>
       <p className="read-the-docs">
