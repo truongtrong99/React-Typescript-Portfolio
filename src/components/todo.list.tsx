@@ -1,25 +1,24 @@
+import { useState } from "react";
 import TodoData from "./todo.data";
 import TodoInput from "./todo.input";
 
+interface ITodo {
+    id: number;
+    title: string;
+    isComplete: boolean;
+
+}
 
 const TodoList = () => {
-  const todos = [
-    {
-        id: 1,
-        title: "Learn React TypeScript",
-        isComplete: false
-    },
-    {
-        id: 2,
-        title: "Subscribe Youtube HoiDanIT",
-        isComplete: true
-    },
-    {
-        id: 3,
-        title: "Learn English",
-        isComplete: true
-    },
-] 
+  const [listTodo, setListTodo] = useState<ITodo[]>([]);
+
+  const addNewTodo = (todo: ITodo) => {
+    setListTodo([...listTodo, todo]);
+  }
+
+  const deleteTodo = (id: number) => {
+    setListTodo(listTodo.filter(item => item.id !== id));
+  }
 
   return (
     <div style={{width:"60vw" , margin:"50px auto", border:"1px solid #ccc", borderRadius:"10px", padding:"10px"}}>
@@ -29,12 +28,14 @@ const TodoList = () => {
       <br />
       <TodoInput 
         name={"Nguyen Van A"}
+        addNewTodo={addNewTodo}
       />
       <TodoData 
-        todos={todos} 
+        todos={listTodo} 
         owner={"Nguyen Van A"}
         age={18}
         isDeveloper={true}
+        deleteTodo={deleteTodo}
       />
     </div>
   );
